@@ -11,8 +11,8 @@ const container = css({
   fontFamily: fonts.secondary,
   backgroundColor: "#fff",
   fontSize: ".6rem",
-  gridTemplateColumns: "repeat(4, 1fr)",
-  gridTemplateRows: "repeat(4, 1fr)",
+  gridTemplateColumns: "repeat(5, 1fr)",
+  gridTemplateRows: "repeat(5, 1fr)",
   columnGap: "5px",
   rowGap: "5px",
   boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
@@ -30,34 +30,43 @@ const itemTitle = css({
 
 const itemBid = css({
   padding: "5px",
-  gridColumn: "1/4",
+  gridColumn: "1/-1",
   gridRow: 2,
   borderBottom: `1px solid ${colors.gray80}`,
 });
 
 const itemStatus = css({
   padding: "5px",
-  gridColumn: "1/4",
+  gridColumn: "1/-1",
   gridRow: 3,
   borderBottom: `1px solid ${colors.gray80}`,
 });
 
 const itemTown = css({
   padding: "5px",
-  gridColumn: "1/4",
+  gridColumn: "1/-1",
   gridRow: 4,
   borderBottom: `1px solid ${colors.gray80}`,
 });
 
 const buttonsVariant = {
   view: {
-    color: colors.orange,
+    color: colors.base,
+    backgroundColor: colors.orange,
+    gridColumn: "1 / 2",
+    gridRow: 5,
   },
   edit: {
-    color: colors.indigo,
+    color: colors.base,
+    backgroundColor: colors.indigo,
+    gridColumn: "3 / 4",
+    gridRow: 5,
   },
   delete: {
-    color: colors.danger,
+    color: colors.base,
+    backgroundColor: colors.danger,
+    gridColumn: "5 / 6",
+    gridRow: 5,
   },
 };
 
@@ -66,12 +75,10 @@ const CircleButton = styled.button(
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    width: "100%",
-    height: "100%",
+    height: "30px",
     border: "none",
-    backgroundColor: "transparent",
+    borderRadius: "5px",
     fontSize: ".9rem",
-    border: `1px solid ${colors.gray20}`,
   },
   ({ variant = "" }) => buttonsVariant[variant]
 );
