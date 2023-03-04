@@ -10,7 +10,7 @@ import { Container } from "../../reuseComponent/Container";
 import { Flexbox } from "../../reuseComponent/Flexbox";
 import { title } from "./CampaignList.style";
 
-const CampaignList = () => {
+const CampaignList = ({ data }) => {
   return (
     <>
       <Container>
@@ -39,7 +39,7 @@ const CampaignList = () => {
           </Button>
         </FormGroup>
 
-        <CampaignItem />
+        <CampaignItem data={data} />
       </Container>
     </>
   );
