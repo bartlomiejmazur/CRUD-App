@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import CampaignItem from "./CampaignItem/CampaignItem";
 
@@ -20,7 +21,12 @@ const CampaignList = () => {
         <div css={flex}>
           <h3 css={titleSecondary}>Campaign Manager</h3>
           <Button variant="green">
-            New <i className="fa-solid fa-plus"></i>
+            <Link
+              css={{ textDecoration: "none", color: "white" }}
+              to={`/campaigns/add`}
+            >
+              New <i className="fa-solid fa-plus"></i>
+            </Link>
           </Button>
         </div>
       </Container>

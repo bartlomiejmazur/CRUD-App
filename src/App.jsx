@@ -20,7 +20,7 @@ function App() {
           element={<ViewCampaign />}
         />
         <Route
-          path={"/campaigns/view/:campaignId"}
+          path={"/campaigns/edit/:campaignId"}
           element={<EditCampaign />}
         />
       </Routes>

@@ -10,6 +10,7 @@ import {
 } from "./CampaignItem.style";
 
 import { css } from "@emotion/react";
+import { Link } from "react-router-dom";
 
 const CampaignItem = () => {
   return (
@@ -19,10 +20,14 @@ const CampaignItem = () => {
       <div css={itemStatus}>Status:</div>
       <div css={itemTown}>Town:</div>
       <CircleButton variant="view">
-        <i className="fa-solid fa-eye"></i>
+        <Link to={`/campaigns/view/:campaignId`}>
+          <i css={{ color: "white" }} className="fa-solid fa-eye"></i>
+        </Link>
       </CircleButton>
       <CircleButton variant="edit">
-        <i className="fa-solid fa-pen-to-square"></i>
+        <Link to={`/campaigns/edit/:campaignId`}>
+          <i css={{ color: "white" }} className="fa-solid fa-pen-to-square"></i>
+        </Link>
       </CircleButton>
       <CircleButton variant="delete">
         <i className="fa-solid fa-trash"></i>
