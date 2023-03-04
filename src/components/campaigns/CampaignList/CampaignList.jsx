@@ -4,22 +4,18 @@ import { Link } from "react-router-dom";
 import CampaignItem from "./CampaignItem/CampaignItem";
 
 import { css } from "@emotion/react";
-import {
-  flex,
-  Button,
-  Input,
-  FormGroup,
-  Container,
-  titleSecondary,
-  titlePrimary,
-} from "./CampaignList.style";
+import { Button } from "../../reuseComponent/Button";
+import { Input, FormGroup } from "../../reuseComponent/Form";
+import { Container } from "../../reuseComponent/Container";
+import { Flexbox } from "../../reuseComponent/Flexbox";
+import { title } from "./CampaignList.style";
 
 const CampaignList = () => {
   return (
     <>
-      <Container variant="border">
-        <div css={flex}>
-          <h3 css={titleSecondary}>Campaign Manager</h3>
+      <Container>
+        <Flexbox>
+          <h3 css={title}>Campaign Manager</h3>
           <Button variant="green">
             <Link
               css={{ textDecoration: "none", color: "white" }}
@@ -28,12 +24,12 @@ const CampaignList = () => {
               New <i className="fa-solid fa-plus"></i>
             </Link>
           </Button>
-        </div>
+        </Flexbox>
       </Container>
 
       <Container>
         <FormGroup>
-          <h3 css={titlePrimary}>
+          <h3>
             <i css={{ padding: "10px" }} className="fa-solid fa-list"></i>Search
             Campaign
           </h3>
@@ -43,7 +39,6 @@ const CampaignList = () => {
           </Button>
         </FormGroup>
 
-        <h4 css={titlePrimary}>List of item</h4>
         <CampaignItem />
       </Container>
     </>

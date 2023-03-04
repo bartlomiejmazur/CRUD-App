@@ -5,8 +5,8 @@ import * as fonts from "../../../../style/fonts";
 
 const container = css({
   width: "100%",
-  margin: "5px auto",
-  padding: "20px",
+  margin: "20px auto",
+  padding: "15px",
   display: "grid",
   fontFamily: fonts.secondary,
   backgroundColor: "#fff",

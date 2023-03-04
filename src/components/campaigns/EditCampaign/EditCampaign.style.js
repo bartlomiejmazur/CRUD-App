@@ -1,14 +1,14 @@
-import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
-import * as colors from "../../../style/colors";
 import * as fonts from "../../../style/fonts";
+import * as colors from "../../../style/colors";
 
 const title = css({
-  fontSize: "1rem",
+  textAlign: "center",
+  color: colors.indigo,
   fontFamily: fonts.primary,
+  fontSize: "1.5rem",
   letterSpacing: "1px",
-  padding: "0 10px",
 });
 
 export { title };
