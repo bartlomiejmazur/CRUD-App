@@ -41,6 +41,10 @@ const buttonVariants = {
     background: colors.gray80,
     color: "white",
   },
+  orange: {
+    background: colors.orange,
+    color: "black",
+  },
 };
 
 export { Button };
