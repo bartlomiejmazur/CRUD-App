@@ -48,8 +48,9 @@ const flex = css({
 
 const buttonVariants = {
   primary: {
-    background: "#3f51b5",
-    color: "white",
+    background: "transparent",
+    border: `1px solid ${colors.gray80}`,
+    color: colors.gray80,
   },
   secondary: {
     background: "#f1f2f7",
