@@ -10,7 +10,8 @@ const container = css({
   display: "grid",
   fontFamily: fonts.secondary,
   backgroundColor: "#fff",
-  fontSize: ".6rem",
+  fontSize: "1rem",
+  fontWeight: "bold",
   gridTemplateColumns: "repeat(5, 1fr)",
   gridTemplateRows: "repeat(5, 1fr)",
   columnGap: "5px",
@@ -22,7 +23,8 @@ const container = css({
 
 const itemTitle = css({
   fontFamily: fonts.primary,
-  fontSize: ".9rem",
+  fontSize: "1.3rem",
+  letterSpacing: "1px",
   gridColumn: "1/-1",
   gridRow: 1,
   margin: "0 auto",

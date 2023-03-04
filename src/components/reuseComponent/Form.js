@@ -10,7 +10,7 @@ import * as fonts from "../../style/fonts";
 //     background: "#fff",
 //     padding: "8px 12px",
 //   });
-const FormGroup = styled.div({
+const FormGroup = styled.form({
   display: "flex",
   flexDirection: "column",
 });
