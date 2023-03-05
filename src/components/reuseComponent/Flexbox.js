@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
+import * as mq from "../../style/media-queries";
+
 const Flexbox = styled.div(
   {
     marginTop: "10px",

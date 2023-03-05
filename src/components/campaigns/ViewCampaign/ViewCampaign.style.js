@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 
 import * as fonts from "../../../style/fonts";
 import * as colors from "../../../style/colors";
+import * as mq from "../../../style/media-queries";
 
 const title = css({
   margin: "10px",
@@ -11,6 +12,17 @@ const title = css({
   fontFamily: fonts.primary,
   letterSpacing: "1px",
   fontWeight: "bold",
+  [mq.medium]: {
+    fontSize: "1.2rem",
+    letterSpacing: "2px",
+    margin: "20px",
+  },
+  [mq.medium]: {
+    fontSize: "2.7rem",
+  },
+  [mq.large]: {
+    fontSize: "2rem",
+  },
 });
 
 const Grid = styled.div({
@@ -18,17 +30,30 @@ const Grid = styled.div({
   gridTemplateColumns: "repeat(4, 1fr)",
   gridTemplateRows: "repeat(8, 1fr)",
   rowGap: "10px",
+  [mq.medium]: {
+    rowGap: "25px",
+    padding: "30px",
+  },
+  [mq.large]: {
+    rowGap: "30px",
+    padding: "30px",
+  },
 });
 
 const Content = styled.span(
   {
-    // textAlign: "right",
     marginLeft: "20px",
     gridColumn: "2/-1",
     fontSize: "1rem",
     fontWeight: "bold",
     fontFamily: fonts.primary,
     letterSpacing: "1px",
+    [mq.medium]: {
+      fontSize: "2rem",
+    },
+    [mq.large]: {
+      fontSize: "1.2rem",
+    },
   },
   ({ variant = "" }) => contentVariant[variant]
 );
@@ -65,6 +90,9 @@ const Item = styled.div(
     fontWeight: "bold",
     fontFamily: fonts.secondary,
     letterSpacing: "1px",
+    [mq.medium]: {
+      fontSize: "2rem",
+    },
   },
   ({ variant = "" }) => itemVariant[variant]
 );
@@ -93,4 +121,18 @@ const itemVariant = {
   },
 };
 
-export { Grid, Item, Content, title };
+const center = css({
+  height: "90vh",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  [mq.medium]: {
+    height: "88vh",
+  },
+  [mq.large]: {
+    height: "88vh",
+  },
+});
+
+export { Grid, Item, Content, title, center };

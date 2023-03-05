@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 
 import * as fonts from "../../style/fonts";
 import * as colors from "../../style/colors";
+import * as mq from "../../style/media-queries";
 
 const Button = styled.button(
   {
@@ -16,6 +17,17 @@ const Button = styled.button(
     borderRadius: "10px",
     color: colors.base,
     border: "none",
+    cursor: "pointer",
+    transition: ".3s",
+    ":hover": {
+      background: colors.indigoDarken10,
+    },
+    [mq.medium]: {
+      fontSize: "2rem",
+    },
+    [mq.large]: {
+      fontSize: "1.4rem",
+    },
   },
   ({ variant = "" }) => buttonVariants[variant]
 );
@@ -32,6 +44,10 @@ const buttonVariants = {
   green: {
     background: "green",
     color: "white",
+    transition: ".3s",
+    ":hover": {
+      background: colors.gray80,
+    },
   },
   danger: {
     background: colors.danger,
@@ -40,10 +56,15 @@ const buttonVariants = {
   gray: {
     background: colors.gray80,
     color: "white",
+    transition: ".3s",
+    ":hover": {
+      background: "black",
+    },
   },
   orange: {
     background: colors.orange,
     color: "black",
+    padding: "10px 20px",
   },
 };
 

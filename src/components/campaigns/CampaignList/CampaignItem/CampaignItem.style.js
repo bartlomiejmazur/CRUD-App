@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import * as colors from "../../../../style/colors";
 import * as fonts from "../../../../style/fonts";
+import * as mq from "../../../../style/media-queries";
 
 const container = css({
   width: "100%",
@@ -19,6 +20,29 @@ const container = css({
   boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
   border: "1px solid #ddd",
   borderRadius: "10px",
+  [mq.small]: {
+    width: "400px",
+    fontSize: "1.3rem",
+  },
+  [mq.large]: {
+    gridTemplateColumns: "repeat(4, 1fr)",
+    gridTemplateRows: "repeat(4, 1fr)",
+    columnGap: "10px",
+    rowGap: "10px",
+    padding: "20px",
+  },
+});
+
+const icon = css({
+  height: "100%",
+  fontSize: "1rem",
+  color: "white",
+  [mq.small]: {
+    fontSize: "1.5rem",
+  },
+  [mq.large]: {
+    fontSize: "1.4rem",
+  },
 });
 
 const itemTitle = css({
@@ -28,6 +52,9 @@ const itemTitle = css({
   gridColumn: "1/-1",
   gridRow: 1,
   margin: "0 auto",
+  [mq.small]: {
+    fontSize: "1.5rem",
+  },
 });
 
 const itemBid = css({
@@ -35,6 +62,9 @@ const itemBid = css({
   gridColumn: "1/-1",
   gridRow: 2,
   borderBottom: `1px solid ${colors.gray80}`,
+  [mq.large]: {
+    gridColumn: "1/4",
+  },
 });
 
 const itemStatus = css({
@@ -42,6 +72,9 @@ const itemStatus = css({
   gridColumn: "1/-1",
   gridRow: 3,
   borderBottom: `1px solid ${colors.gray80}`,
+  [mq.large]: {
+    gridColumn: "1/4",
+  },
 });
 
 const itemTown = css({
@@ -49,6 +82,9 @@ const itemTown = css({
   gridColumn: "1/-1",
   gridRow: 4,
   borderBottom: `1px solid ${colors.gray80}`,
+  [mq.large]: {
+    gridColumn: "1/4",
+  },
 });
 
 const buttonsVariant = {
@@ -57,18 +93,34 @@ const buttonsVariant = {
     backgroundColor: colors.orange,
     gridColumn: "1 / 2",
     gridRow: 5,
+
+    [mq.large]: {
+      gridRow: "2",
+    },
   },
   edit: {
     color: colors.base,
     backgroundColor: colors.indigo,
     gridColumn: "3 / 4",
     gridRow: 5,
+    ":hover": {
+      backgroundColor: colors.indigoDarken10,
+    },
+    [mq.large]: {
+      gridRow: "3",
+    },
   },
   delete: {
     color: colors.base,
     backgroundColor: colors.danger,
     gridColumn: "5 / 6",
     gridRow: 5,
+    ":hover": {
+      backgroundColor: "red",
+    },
+    [mq.large]: {
+      gridRow: "4",
+    },
   },
 };
 
@@ -81,8 +133,35 @@ const CircleButton = styled.button(
     border: "none",
     borderRadius: "5px",
     fontSize: ".9rem",
+    cursor: "pointer",
+    transition: ".3s",
+    ":hover": {
+      backgroundColor: colors.gray80,
+    },
+    [mq.small]: {
+      height: "50px",
+    },
+    [mq.large]: {
+      height: "40px",
+      width: "40",
+      gridColumn: "4/5",
+    },
   },
   ({ variant = "" }) => buttonsVariant[variant]
 );
 
-export { container, itemTitle, itemBid, itemStatus, itemTown, CircleButton };
+const link = css({
+  width: "100%",
+  height: "100%",
+});
+
+export {
+  container,
+  itemTitle,
+  itemBid,
+  itemStatus,
+  itemTown,
+  CircleButton,
+  icon,
+  link,
+};
