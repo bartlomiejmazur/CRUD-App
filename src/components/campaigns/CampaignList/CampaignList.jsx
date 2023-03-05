@@ -8,9 +8,35 @@ import { Button } from "../../reuseComponent/Button";
 import { Input, FormGroup } from "../../reuseComponent/Form";
 import { Container } from "../../reuseComponent/Container";
 import { Flexbox } from "../../reuseComponent/Flexbox";
-import { title } from "./CampaignList.style";
+import { title, spinner } from "./CampaignList.style";
+import { Spinner } from "../../reuseComponent/Spinner";
+import { FaSearch, FaPlus } from "react-icons/fa";
 
-const CampaignList = ({ data }) => {
+import { db } from "../../../firebase-config";
+import { collection, getDocs } from "firebase/firestore";
+
+const CampaignList = () => {
+  const [data, setData] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState("");
+
+  const dataCollectionRef = collection(db, "campaigns");
+
+  React.useEffect(() => {
+    const getData = async () => {
+      try {
+        setLoading(true);
+        const dataDb = await getDocs(dataCollectionRef);
+        setData(dataDb.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    getData();
+  }, []);
+
   return (
     <>
       <Container>
@@ -21,7 +47,7 @@ const CampaignList = ({ data }) => {
               css={{ textDecoration: "none", color: "white" }}
               to={`/campaigns/add`}
             >
-              New <i className="fa-solid fa-plus"></i>
+              New <FaPlus />
             </Link>
           </Button>
         </Flexbox>
@@ -29,17 +55,16 @@ const CampaignList = ({ data }) => {
 
       <Container>
         <FormGroup>
-          <h3>
-            <i css={{ padding: "10px" }} className="fa-solid fa-list"></i>Search
-            Campaign
-          </h3>
-          <Input placeholder="Enter campaing name..." />
-          <Button>
-            Search <i className="fa-solid fa-magnifying-glass"></i>
-          </Button>
-        </FormGroup>
+          <h3 css={{ textAlign: "center" }}>Search Campaign</h3>
 
-        <CampaignItem data={data} />
+          <Input placeholder="Enter campaing name..." />
+          <Flexbox>
+            <Button>
+              Search <FaSearch />
+            </Button>
+          </Flexbox>
+        </FormGroup>
+        {loading ? <Spinner css={spinner} /> : <CampaignItem data={data} />}
       </Container>
     </>
   );
