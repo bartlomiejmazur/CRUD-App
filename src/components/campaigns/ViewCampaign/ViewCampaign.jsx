@@ -1,29 +1,72 @@
 import React from "react";
 
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../../firebase-config";
+
 import { css } from "@emotion/react";
 import { Container } from "../../reuseComponent/Container";
-import { Grid, Item, title } from "./ViewCampaign.style";
+import { Grid, Item, Content, title } from "./ViewCampaign.style";
 import { Button } from "../../reuseComponent/Button";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { Spinner } from "../../reuseComponent/Spinner";
+import { FaArrowLeft } from "react-icons/fa";
 
 const ViewCampaign = () => {
+  const { campaignId } = useParams();
+
+  const docRef = doc(db, "campaigns", campaignId);
+
+  const [item, setItem] = React.useState({});
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState("");
+
+  React.useEffect(() => {
+    const getItem = async () => {
+      try {
+        setLoading(true);
+        const itemDb = await getDoc(docRef);
+        setItem(itemDb.data());
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    getItem();
+  }, [campaignId]);
+
   return (
     <>
       <h2 css={title}>View Campaign</h2>
       <Container variant="border">
-        <Grid>
-          <Item variant="name">Name:</Item>
-          <Item variant="keyword">Keywords:</Item>
-          <Item variant="bid">Bid:</Item>
-          <Item variant="fund">Fund:</Item>
-          <Item variant="status">Status:</Item>
-          <Item variant="town">Town:</Item>
-          <Item variant="radius">Radius:</Item>
-        </Grid>
+        {loading ? (
+          <Spinner />
+        ) : (
+          <>
+            {Object.keys(item).length > 0 && (
+              <Grid>
+                <Item variant="name">Name:</Item>
+                <Content variant="name">{item.name}</Content>
+                <Item variant="keywords">Keywords:</Item>
+                <Content variant="keywords">{item.keywords}</Content>
+                <Item variant="bid">Bid:</Item>
+                <Content variant="bid">{item.bid_amount}</Content>
+                <Item variant="fund">Fund:</Item>
+                <Content variant="fund">{item.fund}</Content>
+                <Item variant="status">Status:</Item>
+                <Content variant="status">{item.status ? "On" : "Off"}</Content>
+                <Item variant="town">Town:</Item>
+                <Content variant="town">{item.town}</Content>
+                <Item variant="radius">Radius:</Item>
+                <Content variant="radius">{item.radius} Kilometers</Content>
+              </Grid>
+            )}
+          </>
+        )}
 
         <Link to={`/campaigns/list`}>
           <Button variant="orange">
-            <i css={{ margin: "0 5px" }} className="fa-solid fa-arrow-left"></i>
+            <FaArrowLeft css={{ margin: "0 10px" }} />
             Back
           </Button>
         </Link>
