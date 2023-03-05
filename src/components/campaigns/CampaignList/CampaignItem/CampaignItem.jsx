@@ -7,6 +7,8 @@ import {
   itemTown,
   itemTitle,
   CircleButton,
+  icon,
+  link,
 } from "./CampaignItem.style";
 
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
@@ -14,8 +16,8 @@ import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import { css } from "@emotion/react";
 import { Link } from "react-router-dom";
 
-const CampaignItem = ({ data }) => {
-  return data.map((el) => {
+const CampaignItem = ({ deleteItem, filterData }) => {
+  return filterData.map((el) => {
     return (
       <div css={container} key={el.id}>
         <div css={itemTitle}>{el.name}</div>
@@ -24,17 +26,17 @@ const CampaignItem = ({ data }) => {
         <div css={itemTown}>Town: {el.town}</div>
 
         <CircleButton variant="view">
-          <Link to={`/campaigns/view/${el.id}`}>
-            <FaEye css={{ color: "white" }} />
+          <Link css={link} to={`/campaigns/view/${el.id}`}>
+            <FaEye css={icon} />
           </Link>
         </CircleButton>
         <CircleButton variant="edit">
-          <Link to={`/campaigns/edit/:campaignId`}>
-            <FaEdit css={{ color: "white" }} />
+          <Link css={link} to={`/campaigns/edit/${el.id}`}>
+            <FaEdit css={icon} />
           </Link>
         </CircleButton>
-        <CircleButton variant="delete">
-          <FaTrash css={{ color: "white" }} />
+        <CircleButton variant="delete" onClick={() => deleteItem(el.id)}>
+          <FaTrash css={icon} />
         </CircleButton>
       </div>
     );

@@ -5,7 +5,7 @@ import { db } from "../../../firebase-config";
 
 import { css } from "@emotion/react";
 import { Container } from "../../reuseComponent/Container";
-import { Grid, Item, Content, title } from "./ViewCampaign.style";
+import { Grid, Item, Content, title, center } from "./ViewCampaign.style";
 import { Button } from "../../reuseComponent/Button";
 import { Link, useParams } from "react-router-dom";
 import { Spinner } from "../../reuseComponent/Spinner";
@@ -36,7 +36,7 @@ const ViewCampaign = () => {
   }, [campaignId]);
 
   return (
-    <>
+    <div css={center}>
       <h2 css={title}>View Campaign</h2>
       <Container variant="border">
         {loading ? (
@@ -66,12 +66,12 @@ const ViewCampaign = () => {
 
         <Link to={`/campaigns/list`}>
           <Button variant="orange">
-            <FaArrowLeft css={{ margin: "0 10px" }} />
+            <FaArrowLeft css={{ margin: "0 10px", fontSize: "1rem" }} />
             Back
           </Button>
         </Link>
       </Container>
-    </>
+    </div>
   );
 };
 
