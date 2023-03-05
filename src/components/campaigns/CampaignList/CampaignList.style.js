@@ -11,4 +11,10 @@ const title = css({
   padding: "0 10px",
 });
 
-export { title };
+const spinner = css({
+  marginTop: "20px",
+  width: "100%",
+  fontSize: "2rem",
+});
+
+export { title, spinner };
