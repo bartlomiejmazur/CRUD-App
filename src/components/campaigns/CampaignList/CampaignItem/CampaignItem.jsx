@@ -9,6 +9,8 @@ import {
   CircleButton,
 } from "./CampaignItem.style";
 
+import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
+
 import { css } from "@emotion/react";
 import { Link } from "react-router-dom";
 
@@ -22,20 +24,17 @@ const CampaignItem = ({ data }) => {
         <div css={itemTown}>Town: {el.town}</div>
 
         <CircleButton variant="view">
-          <Link to={`/campaigns/view/:campaignId`}>
-            <i css={{ color: "white" }} className="fa-solid fa-eye"></i>
+          <Link to={`/campaigns/view/${el.id}`}>
+            <FaEye css={{ color: "white" }} />
           </Link>
         </CircleButton>
         <CircleButton variant="edit">
           <Link to={`/campaigns/edit/:campaignId`}>
-            <i
-              css={{ color: "white" }}
-              className="fa-solid fa-pen-to-square"
-            ></i>
+            <FaEdit css={{ color: "white" }} />
           </Link>
         </CircleButton>
         <CircleButton variant="delete">
-          <i className="fa-solid fa-trash"></i>
+          <FaTrash css={{ color: "white" }} />
         </CircleButton>
       </div>
     );
