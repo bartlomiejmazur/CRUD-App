@@ -20,13 +20,50 @@ const Grid = styled.div({
   rowGap: "10px",
 });
 
+const Content = styled.span(
+  {
+    // textAlign: "right",
+    marginLeft: "20px",
+    gridColumn: "2/-1",
+    fontSize: "1rem",
+    fontWeight: "bold",
+    fontFamily: fonts.primary,
+    letterSpacing: "1px",
+  },
+  ({ variant = "" }) => contentVariant[variant]
+);
+
+const contentVariant = {
+  name: {
+    gridRow: "1",
+  },
+  keywords: {
+    gridRow: "2",
+  },
+  bid: {
+    gridRow: "3",
+  },
+  fund: {
+    gridRow: "4",
+  },
+  status: {
+    gridRow: "5",
+  },
+  town: {
+    gridRow: "6",
+  },
+  radius: {
+    gridRow: "7",
+  },
+};
+
 const Item = styled.div(
   {
     gridColumn: "1/-1",
     borderBottom: "1px solid black",
     fontSize: "1rem",
     fontWeight: "bold",
-    fontFamily: fonts.primary,
+    fontFamily: fonts.secondary,
     letterSpacing: "1px",
   },
   ({ variant = "" }) => itemVariant[variant]
@@ -56,4 +93,4 @@ const itemVariant = {
   },
 };
 
-export { Grid, Item, title };
+export { Grid, Item, Content, title };
