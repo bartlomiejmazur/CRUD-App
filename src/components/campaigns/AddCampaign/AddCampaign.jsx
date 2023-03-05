@@ -1,5 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import { db } from "../../../firebase-config";
+import { collection, addDoc } from "firebase/firestore";
 
 import { css } from "@emotion/react";
 import {
@@ -15,6 +18,11 @@ import { Flexbox } from "../../reuseComponent/Flexbox";
 import { title } from "./AddCampaign.style";
 
 const AddCampaign = () => {
+  const dataCollectionRef = collection(db, "campaigns");
+
+  const navigate = useNavigate();
+
+  const [error, setError] = React.useState("");
   const [state, setState] = React.useState({
     name: "",
     keywords: "",
@@ -29,11 +37,28 @@ const AddCampaign = () => {
     setState({ ...state, [event.target.name]: event.target.value });
   };
 
+  const submitForm = (event) => {
+    event.preventDefault();
+    createCampaign();
+  };
+
+  const createCampaign = async () => {
+    try {
+      const response = await addDoc(dataCollectionRef, state);
+      if (response) {
+        navigate("/campaigns/list", { replace: true });
+      }
+    } catch (error) {
+      setError(error.message);
+      navigate("/campaigns/add", { replace: false });
+    }
+  };
+
   return (
     <>
       <h3 css={title}>Create new campaign</h3>
       <Container>
-        <FormGroup>
+        <FormGroup onSubmit={submitForm}>
           <Input
             required={true}
             placeholder="Name campaign"
