@@ -135,4 +135,12 @@ const center = css({
   },
 });
 
-export { Grid, Item, Content, title, center };
+const spinner = css({
+  position: "absolute",
+  top: "30%",
+  left: "50%",
+  transform: "translateX(-50%)",
+  fontSize: "3rem",
+});
+
+export { Grid, Item, Content, title, center, spinner };
