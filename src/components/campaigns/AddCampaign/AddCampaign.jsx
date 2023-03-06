@@ -29,7 +29,7 @@ const AddCampaign = () => {
     bid_amount: "",
     fund: "",
     status: 0,
-    town: "",
+    town: "Warsaw",
     radius: "",
   });
 
@@ -39,18 +39,17 @@ const AddCampaign = () => {
 
   const submitForm = (event) => {
     event.preventDefault();
-    createCampaign();
+    if (state.bid_amount < 100) {
+      return;
+    } else {
+      createCampaign();
+    }
   };
 
   const createCampaign = async () => {
-    try {
-      const response = await addDoc(dataCollectionRef, state);
-      if (response) {
-        navigate("/campaigns/list", { replace: true });
-      }
-    } catch (error) {
-      setError(error.message);
-      navigate("/campaigns/add", { replace: false });
+    const response = await addDoc(dataCollectionRef, state);
+    if (response) {
+      navigate("/campaigns/list", { replace: true });
     }
   };
 
@@ -69,11 +68,10 @@ const AddCampaign = () => {
               onChange={updateInput}
             />
             <Input
-              required={true}
               placeholder="Keywords"
               id="keywords"
               name="keywords"
-              value={state.keywords}
+              defaultValue={(state.keywords = state.name)}
               onChange={updateInput}
             />
             <Input
@@ -85,6 +83,9 @@ const AddCampaign = () => {
               value={state.bid_amount}
               onChange={updateInput}
             />
+            {state.bid_amount == 0 ? (
+              <p css={{ color: "red" }}>value must be greater than 0</p>
+            ) : null}
             <Input
               required={true}
               type="number"
@@ -124,7 +125,7 @@ const AddCampaign = () => {
               id="town"
               name="town"
               onChange={updateInput}
-              required={true}
+              defaultValue="Warsaw"
             >
               <Option value="Warsaw" id="warsaw">
                 Warszawa
