@@ -15,6 +15,19 @@ const title = css({
   },
 });
 
+const empty = css({
+  marginTop: "10px",
+  textAlign: "center",
+  fontFamily: fonts.primary,
+  fontSize: "1.4rem",
+  [mq.medium]: {
+    fontSize: "2.2rem",
+  },
+  [mq.large]: {
+    fontSize: "2.5rem",
+  },
+});
+
 const item = css({
   [mq.large]: {
     width: "100%",
@@ -54,4 +67,4 @@ const spinner = css({
   fontSize: "2rem",
 });
 
-export { title, spinner, search_title, add_section, item };
+export { title, spinner, search_title, add_section, item, empty };
