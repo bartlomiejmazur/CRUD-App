@@ -155,6 +155,49 @@ const link = css({
   height: "100%",
 });
 
+const bgc = css({
+  position: "fixed",
+  width: "100%",
+  height: "100vh",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  backgroundColor: "rgba(0, 0, 0, .1)",
+});
+
+const modal = css({
+  width: "300px",
+  position: "fixed",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  padding: "30px",
+  backgroundColor: "white",
+  boxShadow: "rgba(0, 0, 0, 0.1) 0px 5px 15px",
+  borderRadius: "15px",
+  [mq.medium]: {
+    width: "500px",
+    padding: "50px",
+  },
+  [mq.large]: {
+    width: "700px",
+    padding: "100px",
+  },
+});
+
+const modal_title = css({
+  textAlign: "center",
+  fontSize: "1.2rem",
+  fontFamily: fonts.primary,
+  letterSpacing: "1px",
+  [mq.medium]: {
+    fontSize: "2rem",
+  },
+  [mq.large]: {
+    fontSize: "2.3rem",
+  },
+});
+
 export {
   container,
   itemTitle,
@@ -164,4 +207,7 @@ export {
   CircleButton,
   icon,
   link,
+  modal,
+  modal_title,
+  bgc,
 };
