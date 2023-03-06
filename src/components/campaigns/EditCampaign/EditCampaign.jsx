@@ -27,7 +27,7 @@ const EditCampaign = () => {
     bid_amount: "",
     fund: "",
     status: 0,
-    town: "",
+    town: "Warsaw",
     radius: "",
   });
   const [loading, setLoading] = React.useState(false);
@@ -140,13 +140,13 @@ const EditCampaign = () => {
             value={item.town}
             onChange={updateInput}
           >
-            <Option value="warsaw">Warszawa</Option>
-            <Option value="cracow">Kraków</Option>
-            <Option value="gdansk">Gdańsk</Option>
-            <Option value="poznan">Poznań</Option>
-            <Option value="rzeszow">Rzeszów</Option>
-            <Option value="wroclaw">Wrocław</Option>
-            <Option value="katowice">Katowice</Option>
+            <Option value="Warsaw">Warszawa</Option>
+            <Option value="Cracow">Kraków</Option>
+            <Option value="Gdansk">Gdańsk</Option>
+            <Option value="Poznan">Poznań</Option>
+            <Option value="Rzeszow">Rzeszów</Option>
+            <Option value="Wroclaw">Wrocław</Option>
+            <Option value="Katowice">Katowice</Option>
           </Select>
           <Input
             required={true}
