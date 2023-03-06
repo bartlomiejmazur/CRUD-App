@@ -8,12 +8,14 @@ import { Button } from "../../reuseComponent/Button";
 import { Input, FormGroup } from "../../reuseComponent/Form";
 import { Container } from "../../reuseComponent/Container";
 import { Flexbox } from "../../reuseComponent/Flexbox";
+
 import {
   title,
   spinner,
   search_title,
   add_section,
   item,
+  empty,
 } from "./CampaignList.style";
 import { Spinner } from "../../reuseComponent/Spinner";
 import { FaSearch, FaPlus } from "react-icons/fa";
@@ -27,6 +29,7 @@ const CampaignList = () => {
   const [error, setError] = React.useState("");
   const [active, setActive] = React.useState(false);
   const [query, setQuery] = React.useState({ text: "" });
+
   const dataCollectionRef = collection(db, "campaigns");
 
   React.useEffect(() => {
@@ -91,16 +94,22 @@ const CampaignList = () => {
             onChange={searchCampaings}
           />
         </FormGroup>
-        {loading ? (
-          <Spinner css={spinner} />
+        {data.data.length === 0 ? (
+          <h5 css={empty}>List is empty</h5>
         ) : (
-          <div css={item}>
-            <CampaignItem
-              data={data.data}
-              filterData={data.fillterData}
-              deleteItem={deleteItem}
-            />
-          </div>
+          <>
+            {loading ? (
+              <Spinner css={spinner} />
+            ) : (
+              <div css={item}>
+                <CampaignItem
+                  data={data.data}
+                  filterData={data.fillterData}
+                  deleteItem={deleteItem}
+                />
+              </div>
+            )}
+          </>
         )}
       </Container>
     </>
