@@ -5,7 +5,14 @@ import { db } from "../../../firebase-config";
 
 import { css } from "@emotion/react";
 import { Container } from "../../reuseComponent/Container";
-import { Grid, Item, Content, title, center } from "./ViewCampaign.style";
+import {
+  Grid,
+  Item,
+  Content,
+  title,
+  center,
+  spinner,
+} from "./ViewCampaign.style";
 import { Button } from "../../reuseComponent/Button";
 import { Link, useParams } from "react-router-dom";
 import { Spinner } from "../../reuseComponent/Spinner";
@@ -37,12 +44,12 @@ const ViewCampaign = () => {
 
   return (
     <div css={center}>
-      <h2 css={title}>View Campaign</h2>
-      <Container variant="border">
-        {loading ? (
-          <Spinner />
-        ) : (
-          <>
+      {loading ? (
+        <Spinner css={spinner} />
+      ) : (
+        <>
+          <h2 css={title}>View Campaign</h2>
+          <Container variant="border">
             {Object.keys(item).length > 0 && (
               <Grid>
                 <Item variant="name">Name:</Item>
@@ -54,23 +61,25 @@ const ViewCampaign = () => {
                 <Item variant="fund">Fund:</Item>
                 <Content variant="fund">{item.fund}</Content>
                 <Item variant="status">Status:</Item>
-                <Content variant="status">{item.status ? "On" : "Off"}</Content>
+                <Content variant="status">
+                  {item.status > 0 ? "On" : "Off"}
+                </Content>
                 <Item variant="town">Town:</Item>
                 <Content variant="town">{item.town}</Content>
                 <Item variant="radius">Radius:</Item>
                 <Content variant="radius">{item.radius} Kilometers</Content>
               </Grid>
             )}
-          </>
-        )}
 
-        <Link to={`/campaigns/list`}>
-          <Button variant="orange">
-            <FaArrowLeft css={{ margin: "0 10px", fontSize: "1rem" }} />
-            Back
-          </Button>
-        </Link>
-      </Container>
+            <Link to={`/campaigns/list`}>
+              <Button variant="orange">
+                <FaArrowLeft css={{ margin: "0 10px", fontSize: "1rem" }} />
+                Back
+              </Button>
+            </Link>
+          </Container>
+        </>
+      )}
     </div>
   );
 };
