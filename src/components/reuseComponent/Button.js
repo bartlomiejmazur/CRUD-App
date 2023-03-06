@@ -52,6 +52,9 @@ const buttonVariants = {
   danger: {
     background: colors.danger,
     color: "white",
+    ":hover": {
+      background: "red",
+    },
   },
   gray: {
     background: colors.gray80,
